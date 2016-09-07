@@ -13,6 +13,7 @@ class squid::config (
   $http_ports                    = $squid::http_ports,
   $snmp_ports                    = $squid::snmp_ports,
   $cache_dirs                    = $squid::cache_dirs,
+  $extra_config_sections         = $squid::extra_config_sections,
 ) inherits squid {
 
   concat{$config:
@@ -46,4 +47,5 @@ class squid::config (
   if $cache_dirs {
     create_resources('squid::cache_dir', $cache_dirs)
   }
+  create_resources('squid::extra_config_section', $extra_config_sections)
 }

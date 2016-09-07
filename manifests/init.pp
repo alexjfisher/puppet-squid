@@ -17,6 +17,7 @@ class squid (
   $http_ports                    = $squid::params::http_ports,
   $snmp_ports                    = $squid::params::snmp_ports,
   $cache_dirs                    = $squid::params::cache_dirs,
+  $extra_config_sections         = {},
 ) inherits ::squid::params {
 
   validate_string($ensure_service)
@@ -63,6 +64,7 @@ class squid (
   } else {
     $package_name_real = pick($package_name, $::squid::params::package_name)
   }
+  validate_hash($extra_config_sections)
 
   contain ::squid::repo
   contain ::squid::install
