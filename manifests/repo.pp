@@ -8,7 +8,7 @@ class squid::repo
             yumrepo { 'squid':
               name     => 'Squid',
               descr    => 'Squid repo for CentOS Linux - $basearch',
-              baseurl  => 'http://www1.ngtech.co.il/repo/centos/$releasever/$basearch/',
+              baseurl  => "http://www1.ngtech.co.il/repo/centos/${::operatingsystemmajrelease}/\$basearch/",
               gpgcheck => '1',
             }
           }
